@@ -77,4 +77,7 @@ h1 {
   #completed {
     margin-left: 15px;
   }
-
+  .competed-btn-div{
+    align-items: center;
+    text-align: center;
+  }

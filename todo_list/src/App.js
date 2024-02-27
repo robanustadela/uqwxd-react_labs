@@ -8,16 +8,16 @@ const App = () => {
     useEffect(() => {
         const loadedTodos = JSON.parse(localStorage.getItem("todos"));
         if (loadedTodos) {
-          setTodos(loadedTodos);
+            setTodos(loadedTodos);
         }
-      }, []);
-    
+    }, []);
+
     useEffect(() => {
-        if(todos.length > 0) {
+        if (todos.length > 0) {
             const json = JSON.stringify(todos);
             localStorage.setItem("todos", json);
         }
-      }, [todos]);
+    }, [todos]);
 
     // Add the handlesubmit code here
     const handleSubmit = (e) => {
@@ -66,6 +66,11 @@ const App = () => {
         setTodos(updatedTodos);
         setTodoEditing(null);
     }
+    // Delete Completed Tasks
+    function deleteCompleted() {
+        const uncompletedTodos = [...todos].filter((todo) => !todo.completed)
+        setTodos(uncompletedTodos);
+    }
 
     return (<div id="todo-list">
         <h1>Zeraf</h1>
@@ -111,6 +116,10 @@ const App = () => {
                 </div>
             </div>
         ))}
+
+        <div className="competed-btn-div">
+            <button className="completedBtn" onClick={() => deleteCompleted()}>Delete Completed Tasks</button>
+        </div>
     </div>);
 };
 export default App;
